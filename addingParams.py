@@ -39,7 +39,9 @@ baseurl='http://10.125.70.28:8080/client/api?'
 request={
     "apiKey": "oCFMurQjw4EX-T7fRQXBCmkbDv5F1Hn2O-y-Jf_xZe2WtqGhIx6zgGvmXCOOv8XWsBHbEe4xnWR94H6HWyWt9A",
     "response" : "json",
-    "command" : "listUsers"
+    "command" : "listUsers",
+    "domainid": "e5934522-fe91-11ec-ae65-525400c8d027",
+    "id":"d65dd961-5408-4220-9458-e808d02a2ff7"
 }
 secretkey="2yLo8pQRIpwBW4jOwgPd6WVKBmi3q3gosi2llVa5h3JOVZKBHvbbLdc_mbaYEtKIGP5N_mmfnJeNW1maP4AKew"
 request_str='&'.join(['='.join([k,urllib.quote_plus(request[k])]) for k in request.keys()])
@@ -49,9 +51,11 @@ sig=hmac.new(secretkey,sig_str,hashlib.sha1).digest()
 sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest())
 sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip()
 sig=urllib.quote_plus(base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip())
-print("signature is \n",sig)
+# print("signature is \n",sig)
 req=baseurl+request_str+'&signature='+sig
 print("request URL is \n1",req)
+print()
+print()
 res=urllib2.urlopen(req)
 response=res.read()
 
