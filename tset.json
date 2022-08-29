@@ -1,0 +1,79 @@
+{
+    "failingChecks":[],
+    "monitoringResults":"{
+        "basic":{
+            "lastRun": {
+                "duration": "11.5801198483", 
+                "start": "2022-08-29 15:21:01.740941", 
+                "end": "2022-08-29 15:21:13.321061"}, 
+            "disk_space_check.py": {
+                "lastRunDuration": "26.3421535492", 
+                "lastUpdate": "1661786473232", 
+                "message": "Sufficient free space is 2046 MB", 
+                "success": "true"
+            }, 
+            "gateways_check.py": {
+                "lastRunDuration": "8080.56402206", 
+                "lastUpdate": "1661786465067", 
+                "message": "All 2 gateways are reachable via ping", 
+                "success": "true"
+            }, 
+            "ssh.service": {
+                "lastRunDuration": "10.687828064", 
+                "lastUpdate": "1661786461741", 
+                "message": "service is running", 
+                "success": "true"
+            }, 
+            "memory_usage_check.py": {
+                "lastRunDuration": "55.97615242", 
+                "lastUpdate": "1661786473148", 
+                "message": "Memory Usage within limits with current at 40.6035%", 
+                "success": "true"
+            }, 
+            "cpu_usage_check.py": {
+                "lastRunDuration": "3231.22692108", 
+                "lastUpdate": "1661786461835", 
+                "message": "CPU Usage within limits with current at 0.0%", 
+                "success": "true"
+            }, 
+            "router_version_check.py": {
+                "lastRunDuration": "29.8910140991", 
+                "lastUpdate": "1661786473290", 
+                "message": "Template and scripts version match successful", 
+                "success": "true"
+            }
+        },
+        "advanced":{
+            "lastRun": {
+                "duration": "0.305876016617", 
+                "start": "2022-08-29 15:20:01.376234", 
+                "end": "2022-08-29 15:20:01.682110"
+            }, 
+            "haproxy_check.py": {
+                "lastRunDuration": "29.177904129", 
+                "lastUpdate": "1661786401433",
+                "message": "No data provided to check, skipping", 
+                "success": "true"
+            }, 
+            "dhcp_check.py": {
+                "lastRunDuration": "29.7358036041", 
+                "lastUpdate": "1661786401376", 
+                "message": "No VMs running data available, skipping", 
+                "success": "true"
+            }, 
+            "dns_check.py": {
+                "lastRunDuration": "28.6040306091", 
+                "lastUpdate": "1661786401563", 
+                "message": "No VMs running data available, skipping", 
+                "success": "true"
+            }, 
+            "iptables_check.py": {
+                "lastRunDuration": "33.0758094788", 
+                "lastUpdate": "1661786401620", 
+                "message": "No portforwarding rules provided to check, skipping", 
+                "success": "true"
+            }
+        }
+    }",
+    "result":"true",
+    "details":"{"basic":{"lastRun": {"duration": "11.5801198483", "start": "2022-08-29 15:21:01.740941", "end": "2022-08-29 15:21:13.321061"}, "disk_space_check.py": {"lastRunDuration": "26.3421535492", "lastUpdate": "1661786473232", "message": "Sufficient free space is 2046 MB", "success": "true"}, "gateways_check.py": {"lastRunDuration": "8080.56402206", "lastUpdate": "1661786465067", "message": "All 2 gateways are reachable via ping", "success": "true"}, "ssh.service": {"lastRunDuration": "10.687828064", "lastUpdate": "1661786461741", "message": "service is running", "success": "true"}, "memory_usage_check.py": {"lastRunDuration": "55.97615242", "lastUpdate": "1661786473148", "message": "Memory Usage within limits with current at 40.6035%", "success": "true"}, "cpu_usage_check.py": {"lastRunDuration": "3231.22692108", "lastUpdate": "1661786461835", "message": "CPU Usage within limits with current at 0.0%", "success": "true"}, "router_version_check.py": {"lastRunDuration": "29.8910140991", "lastUpdate": "1661786473290", "message": "Template and scripts version match successful", "success": "true"}},"advanced":{"lastRun": {"duration": "0.305876016617", "start": "2022-08-29 15:20:01.376234", "end": "2022-08-29 15:20:01.682110"}, "haproxy_check.py": {"lastRunDuration": "29.177904129", "lastUpdate": "1661786401433", "message": "No data provided to check, skipping", "success": "true"}, "dhcp_check.py": {"lastRunDuration": "29.7358036041", "lastUpdate": "1661786401376", "message": "No VMs running data available, skipping", "success": "true"}, "dns_check.py": {"lastRunDuration": "28.6040306091", "lastUpdate": "1661786401563", "message": "No VMs running data available, skipping", "success": "true"}, "iptables_check.py": {"lastRunDuration": "33.0758094788", "lastUpdate": "1661786401620", "message": "No portforwarding rules provided to check, skipping", "success": "true"}}}","wait":"0","bypassHostMaintenance":"false"}}] }

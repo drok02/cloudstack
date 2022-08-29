@@ -1,0 +1,3 @@
+baseurl='http://192.168.0.110:8080/client/api?'
+apiKey="Pr3IZM1ArGIQsKy8i04AVSjkiF_CgOEdGA4wdYwj52ZxA6oUIxzC7iX2lbzouAU8ZEf_pfUEJfpXl_YyA-kCFg"
+secretKey="qw74H5eW__OIj8ex8cBL_z_5xbXux3NvgfgSukBZgCce0M0_6mssQscWbHK9A20eb9uxdc7uJ0j4LQoa-oJPXg"
