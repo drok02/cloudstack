@@ -40,4 +40,3 @@ def listServiceOfferings():
     print(jsonData["listserviceofferingsresponse"]["serviceoffering"][0]["id"])
     return jsonData["listserviceofferingsresponse"]["serviceoffering"][0]["id"]
     
-listServiceOfferings()

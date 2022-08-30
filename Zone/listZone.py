@@ -42,4 +42,3 @@ def listzone():
     print(jsonData)
     return jsonData
     
-listzone()

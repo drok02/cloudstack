@@ -5,4 +5,3 @@ def getCentosID():
     print(id)
     return id
 
-getCentosID()

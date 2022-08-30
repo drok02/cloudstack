@@ -1,3 +1,3 @@
-baseurl='http://10.125.70.28:8080/client/api?'
-apiKey="W52i_LjFrXiTApR6FseHUkkGH24fIHnKvZ7Oq8rZQVZ8ow1TIl4JTmYIkbjmF-9_7t7zplyR-YkcWIHQIOYU9Q"
-secretKey="smYL6tn_2ghP8q64qfEz8Ewq1htWcNhDlgDV3ugy53dsWZ1tjFW3LaiYU1RtpnhtzjQpfSPKk4G9MJAAWfHspQ"
+baseurl='http://192.168.0.13:8080/client/api?'
+apiKey="jZZnQQLVciOTfr7djN4FrR4mmNYY0Voq1c9L_wCQEWpcIkmEUUBx0wNWHYzX8gwBkSnulmiWDHxHnEuz3ts_Fw"
+secretKey="SfYiA0oxnnrbebB3vJnpHPvI8FsPXrxrLhvTi7FP0VSGn11R1scjPhSaNU7ryty5RjP6AezIUlspQETiL7ZsFA"
