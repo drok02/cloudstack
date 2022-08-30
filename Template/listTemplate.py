@@ -1,13 +1,15 @@
-import urllib2
+import urllib.parse
+import urllib.request
 import urllib
 import hashlib
 import hmac
 import base64
 import sys,os
 import json
-# sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname("__file__"))) )
-sys.path.append("C:/Users/PC/bong/Cloudstack/cloudstack")
+sys.path.append("/Users/ibonghun/Developer/cloudstack")
 import urls as key
+
+
 def listTemplate():
     baseurl=key.baseurl
     apiKey=key.apiKey
@@ -22,16 +24,16 @@ def listTemplate():
     request['apikey']=apiKey
     secretkey=secretKey
     # secretkey='FGZAE9Pk5jWqlGPOdCGsdO7mkdkbc8azmTBOQzQnKrnbaiuUsnF2klsJ_FDfKlrs-s2ZTiYDIUiwmHw7aZ7B4Q'
-    request_str='&'.join(['='.join([k,urllib.quote_plus(request[k])]) for k in request.keys()])
-    sig_str='&'.join(['='.join([k.lower(),urllib.quote_plus(request[k].lower().replace('+','%20'))])for k in sorted(request.iterkeys())])
-    sig=hmac.new(secretkey,sig_str,hashlib.sha1)
-    sig=hmac.new(secretkey,sig_str,hashlib.sha1).digest()
-    sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest())
-    sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip()
-    sig=urllib.quote_plus(base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip())
+    request_str='&'.join(['='.join([k,urllib.parse.quote_plus(request[k])]) for k in request.keys()])
+    sig_str='&'.join(['='.join([k.lower(),urllib.parse.quote_plus(request[k].lower().replace('+','%20'))])for k in sorted(request)])
+    sig=hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1)
+    sig=hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest()
+    sig=base64.encodebytes(hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest())
+    sig=base64.encodebytes(hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest()).strip()
+    sig=urllib.parse.quote_plus(base64.encodebytes(hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest()).strip())
     req=baseurl+request_str+'&signature='+sig
     req
-    res=urllib2.urlopen(req)
+    res=urllib.request.urlopen(req)
     response=res.read()
 
     print(response)

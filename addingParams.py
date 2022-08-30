@@ -1,5 +1,5 @@
-import urllib2
 import urllib
+import urllib.parse, urllib.request
 import hashlib
 import hmac
 import base64
@@ -56,7 +56,7 @@ req=baseurl+request_str+'&signature='+sig
 print("request URL is \n1",req)
 print()
 print()
-res=urllib2.urlopen(req)
+res=urllib.request.urlopen(req)
 response=res.read()
 
 print(response)

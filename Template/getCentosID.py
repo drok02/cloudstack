@@ -1,7 +1,7 @@
-import listTemplate as list
+import Template.listTemplate 
 
 def getCentosID():
-    id=list.listTemplate()["listtemplatesresponse"]["template"][0]["id"]
+    id=Template.listTemplate.listTemplate()["listtemplatesresponse"]["template"][0]["id"]
     print(id)
     return id
 
