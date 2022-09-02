@@ -1,3 +1,3 @@
-baseurl='http://192.168.0.13:8080/client/api?'
+baseurl='http://211.197.83.186:8080/client/api?'
 apiKey="jZZnQQLVciOTfr7djN4FrR4mmNYY0Voq1c9L_wCQEWpcIkmEUUBx0wNWHYzX8gwBkSnulmiWDHxHnEuz3ts_Fw"
 secretKey="SfYiA0oxnnrbebB3vJnpHPvI8FsPXrxrLhvTi7FP0VSGn11R1scjPhSaNU7ryty5RjP6AezIUlspQETiL7ZsFA"

@@ -16,7 +16,6 @@ class zone():
         apiKey=key.apiKey
         secretkey=key.secretKey
 
-        # baseurl='http://10.125.70.28:8080/client/api?'
         request={
             "apiKey": "oCFMurQjw4EX-T7fRQXBCmkbDv5F1Hn2O-y-Jf_xZe2WtqGhIx6zgGvmXCOOv8XWsBHbEe4xnWR94H6HWyWt9A",
             "response" : "json",
