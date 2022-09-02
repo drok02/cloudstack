@@ -3,6 +3,9 @@ import urllib.parse, urllib.request
 import hashlib
 import hmac
 import base64
+import signature
+import urls as key
+
 
 # baseurl='http://10.125.70.28:8080/client/api?'
 # request={}
@@ -35,29 +38,30 @@ import base64
 # &templateid=2
 # &zoneid=4
 
-baseurl='http://10.125.70.28:8080/client/api?'
+baseurl=key.baseurl
 request={
-    "apiKey": "oCFMurQjw4EX-T7fRQXBCmkbDv5F1Hn2O-y-Jf_xZe2WtqGhIx6zgGvmXCOOv8XWsBHbEe4xnWR94H6HWyWt9A",
+    "apiKey": key.apiKey,
     "response" : "json",
-    "command" : "listUsers",
-    "domainid": "e5934522-fe91-11ec-ae65-525400c8d027",
-    "id":"d65dd961-5408-4220-9458-e808d02a2ff7"
+    "command" : "listUsers"
 }
-secretkey="2yLo8pQRIpwBW4jOwgPd6WVKBmi3q3gosi2llVa5h3JOVZKBHvbbLdc_mbaYEtKIGP5N_mmfnJeNW1maP4AKew"
-request_str='&'.join(['='.join([k,urllib.quote_plus(request[k])]) for k in request.keys()])
-sig_str='&'.join(['='.join([k.lower(),urllib.quote_plus(request[k].lower().replace('+','%20'))])for k in sorted(request.iterkeys())])
-sig=hmac.new(secretkey,sig_str,hashlib.sha1)
-sig=hmac.new(secretkey,sig_str,hashlib.sha1).digest()
-sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest())
-sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip()
-sig=urllib.quote_plus(base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip())
-# print("signature is \n",sig)
-req=baseurl+request_str+'&signature='+sig
-print("request URL is \n1",req)
-print()
-print()
-res=urllib.request.urlopen(req)
-response=res.read()
+secretkey=key.secretKey
 
-print(response)
+# request_str='&'.join(['='.join([k,urllib.quote_plus(request[k])]) for k in request.keys()])
+# sig_str='&'.join(['='.join([k.lower(),urllib.quote_plus(request[k].lower().replace('+','%20'))])for k in sorted(request.iterkeys())])
+# sig=hmac.new(secretkey,sig_str,hashlib.sha1)
+# sig=hmac.new(secretkey,sig_str,hashlib.sha1).digest()
+# sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest())
+# sig=base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip()
+# sig=urllib.quote_plus(base64.encodestring(hmac.new(secretkey,sig_str,hashlib.sha1).digest()).strip())
+# # print("signature is \n",sig)
+# req=baseurl+request_str+'&signature='+sig
+# print("request URL is \n1",req)
+# print()
+# print()
+# res=urllib.request.urlopen(req)
+# response=res.read()
+#
+# print(response)
 # print(req)
+
+signature.requestsig(baseurl,secretkey,request)
