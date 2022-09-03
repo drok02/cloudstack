@@ -32,5 +32,5 @@ class OS():
         return response
 
 
-# f = OS()
-# f.listostype()
+f = OS()
+f.listostype()

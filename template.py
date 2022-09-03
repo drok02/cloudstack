@@ -15,7 +15,7 @@ class Template():
         secretkey = key.secretKey
 
         request = {"apiKey": apikey, "response": "json", "command": "registerTemplate",
-                   "displaytext": "e5934522-fe91-11ec-ae65-525400c8d027", "format": "qcow2", "hypervisor": "kvm",
+                   "displaytext": "test_image", "format": "qcow2", "hypervisor": "kvm",
                    "name": name, "url": url, "ostypeid": osTypeid, "zoneid": zone.getZone1ID()}
 
         signature.requestsig(baseurl, secretkey, request)
@@ -83,5 +83,19 @@ class Template():
         print(id)
         return id
 
-# f=Template()
+    def deleteTemplate(self,id):
+        baseurl = key.baseurl
+        apikey = key.apiKey
+        secretkey = key.secretKey
+
+        request = {"apiKey": apikey, "response": "json", "command": "deleteTemplate",
+                   "id": id}
+
+        signature.requestsig(baseurl, secretkey, request)
+
+
+
+f=Template()
+# f.regiTemplate("openstack_image","http://3.39.193.17:8000/media/img-files/backup0903.qcow2","a20b6938-286a-11ed-bfb3-0800277c0f4b")
 # f.listTemplate()
+f.deleteTemplate("7043c701-b194-4b37-b793-0b2c9bf55365")
