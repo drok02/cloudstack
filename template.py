@@ -1,26 +1,54 @@
+import base64
+import hmac
 import os
 import sys
-
+import requests
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import urls as key
 import Zone.getZone1ID as zone
 import json
 import signature
+import urllib.parse, urllib.request
+import hashlib
+import webbrowser
+from selenium import webdriver
 
 class Template():
 
-    def regiTemplate(self, name, url, osTypeid):
+    def regiTemplate(self, name, url, osTypeid, zoneid):
         baseurl = key.baseurl
         apikey = key.apiKey
         secretkey = key.secretKey
 
         request = {"apiKey": apikey, "response": "json", "command": "registerTemplate",
-                   "displaytext": "test_image", "format": "qcow2", "hypervisor": "kvm",
-                   "name": name, "url": url, "ostypeid": osTypeid, "zoneid": zone.getZone1ID()}
+                   "displaytext": name, "format": "qcow2", "hypervisor": "kvm",
+                   "name": name, "url": url, "ostypeid": osTypeid, "zoneid": zoneid}
+        request_str = '&'.join(['='.join([k, urllib.parse.quote_plus(request[k])]) for k in request.keys()])
+        sig_str = '&'.join(
+            ['='.join([k.lower(), urllib.parse.quote_plus(request[k].lower().replace('+', '%20'))]) for k in
+             sorted(request)])
+        sig = hmac.new(secretkey.encode('utf-8'), sig_str.encode('utf-8'), hashlib.sha1)
+        sig = hmac.new(secretkey.encode('utf-8'), sig_str.encode('utf-8'), hashlib.sha1).digest()
+        sig = base64.encodebytes(hmac.new(secretkey.encode('utf-8'), sig_str.encode('utf-8'), hashlib.sha1).digest())
+        sig = base64.encodebytes(
+            hmac.new(secretkey.encode('utf-8'), sig_str.encode('utf-8'), hashlib.sha1).digest()).strip()
+        sig = urllib.parse.quote_plus(base64.encodebytes(
+            hmac.new(secretkey.encode('utf-8'), sig_str.encode('utf-8'), hashlib.sha1).digest()).strip())
+        req = "http://211.197.83.186:8080/client/api?" + request_str + '&signature=' + sig
+        print(req)
+        # reque=urllib.request.Request(req)
+        # data=urllib.request.urlopen(reque).read()
+        # print(data)
 
-        signature.requestsig(baseurl, secretkey, request)
+        # res = urllib.request.urlopen(req)
+        # print(res)
 
+        # req=signature.requestsig(baseurl, secretkey, request)
+        # print(res.read())
 
+        webbrowser.open(req)
+        # get=requests.get(req)
+        # print(get)
 
     def listTemplate(self):
         baseurl = key.baseurl
@@ -98,4 +126,5 @@ class Template():
 f=Template()
 # f.regiTemplate("openstack_image","http://3.39.193.17:8000/media/img-files/backup0903.qcow2","a20b6938-286a-11ed-bfb3-0800277c0f4b")
 # f.listTemplate()
-f.deleteTemplate("7043c701-b194-4b37-b793-0b2c9bf55365")
+z=zone.getZone1ID()
+f.regiTemplate("imagebackupapitest2","http://3.39.193.17:8000/media/img-files/backup0903.qcow2","8eef80ca-2bab-11ed-94e7-08002767856c",z)

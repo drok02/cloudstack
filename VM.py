@@ -13,20 +13,25 @@ import Zone.getZone1ID as zone
 import Template.getCentosID as centos
 import ServiceOffering.listServiceOfferings as listOffer
 # import Zone.listZone
-
+import zone
+import network
+import host
 class VM():
 
-    def deployVM(self):
+    def deployVM(self,templateID,vmname="test"):
         baseurl=key.baseurl
         apiKey=key.apiKey
         secretkey=key.secretKey
+        z=zone.zone()
+        n=network.net()
+        h=host.host()
         # serviceofferingId = "6906780f-3625-46ea-86f0-5ed272dc2f73"
         serviceofferingId = listOffer.listServiceOfferings()
         # baseurl='http://10.125.70.28:8080/client/api?'
-        request= {"apiKey": apiKey, "response": "json", "command": "deployVirtualMachine", "serviceofferingId": "1",
-                  "hostid": "db1f8fad-efa5-4cdb-92e6-19ff286a2253",
-                  "networkids": "d4e11e5f-def3-4d32-876f-636c5606f6f5", 'serviceofferingId': serviceofferingId,
-                  'templateId': centos.getCentosID(), 'zoneId': "aee60d64-ae63-4319-85f1-92687f1875ff"}
+        request= {"apiKey": apiKey, "response": "json", "command": "deployVirtualMachine",
+                  "hostid": h.gethostid(),
+                  "networkids": n.getnetid(), 'serviceofferingId': serviceofferingId,
+                  'templateId': templateID, 'zoneId': z.getZoneID(), "startvm": "false","displayname":vmname,"name":vmname}
         # request['zoneId']=zone.getZone1ID()
         # request_str='&'.join(['='.join([k,urllib.parse.quote_plus(request[k])]) for k in request.keys()])
         # sig_str='&'.join(['='.join([k.lower(),urllib.parse.quote_plus(request[k].lower().replace('+','%20'))])for k in sorted(request)])
@@ -40,5 +45,26 @@ class VM():
         # res=urllib.request.urlopen(req)
         # response=res.read()
         response= signature.requestsig(baseurl,secretkey,request)
-        print(response)
+        # print(response)
+        return response
 
+    def getVMid(self,vmname):
+        request = {"apiKey": apiKey, "response": "json", "command": "listVirtualMachines",
+                   "name": vmname}
+        response = signature.requestsig(key.baseurl, key.secretKey, request)
+        return response
+
+    def startVM(self,vmid):
+        request = {"apiKey": apiKey, "response": "json", "command": "startVirtualMachine",
+                   "id": vmid}
+        response = signature.requestsig(key.baseurl, key.secretKey, request)
+        return response
+
+
+    def stopVM(self,vmid):
+        request = {"apiKey": apiKey, "response": "json", "command": "stopVirtualMachine",
+                   "id": vmid}
+        response = signature.requestsig(key.baseurl, key.secretKey, request)
+        return response
+# f=VM()
+# f.deployVM("2b8ea85e-8695-4b8e-81f0-57b9463f7336")

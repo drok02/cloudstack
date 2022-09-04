@@ -11,25 +11,29 @@ import signature
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import urls as key
+defaultZone="zone1"
 
 class zone():
 
-    def listzone(self):
+    def listzone(self,zonename=defaultZone):
         baseurl=key.baseurl
         apiKey=key.apiKey
         secretkey=key.secretKey
 
-        request= {"apiKey": apiKey, "response": "json", "command": "listZones"}
+        request= {"apiKey": apiKey, "response": "json", "command": "listZones", "name":zonename}
         response=signature.requestsig(baseurl,secretkey,request)
         jsonData=json.loads(response)
         # print(jsonData)
         return jsonData
     
-    def getZone1ID(self):
-        zone=self.listzone()
+    def getZoneID(self,zonename=defaultZone):
+        zone=self.listzone(zonename)
         id=zone["listzonesresponse"]["zone"][0]["id"]
-        print("zone1 id is "+id)
+        print(zonename+" id is "+id)
         return id
 
+
 # f=zone()
-# f.getZone1ID()
+# # p=f.listzone()
+# # print(p)
+# f.getZoneID()
