@@ -32,38 +32,34 @@ class VM():
                   "hostid": h.gethostid(),
                   "networkids": n.getnetid(), 'serviceofferingId': serviceofferingId,
                   'templateId': templateID, 'zoneId': z.getZoneID(), "startvm": "false","displayname":vmname,"name":vmname}
-        # request['zoneId']=zone.getZone1ID()
-        # request_str='&'.join(['='.join([k,urllib.parse.quote_plus(request[k])]) for k in request.keys()])
-        # sig_str='&'.join(['='.join([k.lower(),urllib.parse.quote_plus(request[k].lower().replace('+','%20'))])for k in sorted(request)])
-        # sig=hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1)
-        # sig=hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest()
-        # sig=base64.encodebytes(hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest())
-        # sig=base64.encodebytes(hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest()).strip()
-        # sig=urllib.parse.quote_plus(base64.encodebytes(hmac.new(secretkey.encode('utf-8'),sig_str.encode('utf-8'),hashlib.sha1).digest()).strip())
-        # req=baseurl+request_str+'&signature='+sig
-        # req
-        # res=urllib.request.urlopen(req)
-        # response=res.read()
+
         response= signature.requestsig(baseurl,secretkey,request)
         # print(response)
         return response
 
     def getVMid(self,vmname):
-        request = {"apiKey": apiKey, "response": "json", "command": "listVirtualMachines",
+        request = {"apiKey": key.apiKey, "response": "json", "command": "listVirtualMachines",
                    "name": vmname}
         response = signature.requestsig(key.baseurl, key.secretKey, request)
         return response
 
     def startVM(self,vmid):
-        request = {"apiKey": apiKey, "response": "json", "command": "startVirtualMachine",
+        request = {"apiKey": key.apiKey, "response": "json", "command": "startVirtualMachine",
                    "id": vmid}
         response = signature.requestsig(key.baseurl, key.secretKey, request)
         return response
 
 
     def stopVM(self,vmid):
-        request = {"apiKey": apiKey, "response": "json", "command": "stopVirtualMachine",
+        request = {"apiKey": key.apiKey, "response": "json", "command": "stopVirtualMachine",
                    "id": vmid}
+        response = signature.requestsig(key.baseurl, key.secretKey, request)
+        return response
+
+    def deleteVM(self,vmid):
+
+        request = {"apiKey": key.apiKey, "response": "json", "command": "destroyVirtualMachine",
+                   "id": vmid, "expunge": "true"}
         response = signature.requestsig(key.baseurl, key.secretKey, request)
         return response
 # f=VM()
